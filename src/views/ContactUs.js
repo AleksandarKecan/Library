@@ -6,7 +6,7 @@ function ContactUs() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmit(true);
-    e.target.rest();
+    e.target.reset();
   };
 
   return (
