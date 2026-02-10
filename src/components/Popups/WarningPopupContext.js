@@ -3,27 +3,31 @@ import { createContext, useContext, useState } from "react";
 const WarningPopupContext = createContext();
 
 export function useWarningPopup() {
-    return useContext(WarningPopupContext);
+  return useContext(WarningPopupContext);
 }
 export function WarningPopupProvider({ children }) {
-    const [popups, setPopups] = useState([]);
+  const [popups, setPopups] = useState([]);
 
-const showPopup = (rentedDetails) => {
+  const showPopup = rentedDetails => {
     setPopups(prev => {
-        if (!prev.find(p => p.customer.startTime === rentedDetails.customer.startTime)) {
-            return [...prev, rentedDetails];
-        }
-        return prev;
+      if (
+        !prev.find(
+          p => p.customer.startTime === rentedDetails.customer.startTime
+        )
+      ) {
+        return [...prev, rentedDetails];
+      }
+      return prev;
     });
-};
+  };
 
-const hidePopup = (startTime) => {
+  const hidePopup = startTime => {
     setPopups(prev => prev.filter(p => p.customer.startTime !== startTime));
-};
+  };
 
-return (
+  return (
     <WarningPopupContext.Provider value={{ popups, showPopup, hidePopup }}>
-        {children}
+      {children}
     </WarningPopupContext.Provider>
-);
+  );
 }
