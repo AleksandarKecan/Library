@@ -3,11 +3,36 @@ import { useState } from "react";
 function ContactUs() {
   const [submit, setSubmit] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmit(true);
-    e.target.reset();
-  };
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target["message-input"].value
+    };
+
+    console.log("Saljem podatke:", formData);
+
+    try {
+      const response = await fetch("http://localhost:3001/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+      console.log("Odgovor od API-ja: ", data);
+
+      setSubmit(true);
+      e.target.reset();
+    } catch (error) {
+      console.error("Greska", error);
+      alert("Doslo je do greske pri slanju poruke.");
+    }
+  }
 
   return (
     <div className="contactUs-page">
