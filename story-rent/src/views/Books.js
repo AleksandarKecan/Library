@@ -129,17 +129,9 @@ function Books({ openPopup, availableBooks, selectedGenre }) {
   const [openDetailsPopup, setOpenDetailsPopup] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-
-  const allGenres = ["All", "Novel", "Roman", "Sci-Fi"];
   const filteredBooks = selectedGenre === "All"
     ? books
     : books.filter(book => book.genre === selectedGenre);
-
-  const genreCounts = {
-    "Novel": books.filter(book => book.genre === "Novel").length,
-    "Roman": books.filter(book => book.genre === "Roman").length,
-    "Sci-Fi": books.filter(book => book.genre === "Sci-Fi").length
-  };
 
   return (
     <>

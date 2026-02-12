@@ -6,7 +6,7 @@ import Rented from "./views/Rented";
 import RentPopup from "./components/Popups/RentPopup";
 import { WarningPopupProvider } from "./components/Popups/WarningPopupContext";
 import GlobalPopups from "./components/Popups/GlobalPopups";
-import "./Style/style.css";
+import "./style/style.css";
 import ContactUs from "./views/ContactUs";
 import Footer from "./components/Footer/Footer";
 
